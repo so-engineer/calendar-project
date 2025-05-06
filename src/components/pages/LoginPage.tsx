@@ -20,7 +20,7 @@ export const LoginPage = () => {
             placeholder="password"
           />
         </div>
-        <PrimaryBtn>ログイン</PrimaryBtn>
+        <PrimaryBtn onClick={() => null}>ログイン</PrimaryBtn>
       </form>
     </div>
   );
