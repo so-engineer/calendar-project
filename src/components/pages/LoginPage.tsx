@@ -1,14 +1,20 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { Input } from "../atoms/Input";
 import { PrimaryBtn } from "../atoms/PrimaryBtn";
 import { LoginInfoType } from "../../types/login";
 import { login } from "../../api/login";
+import { useNavigate } from "react-router-dom";
+import { LoginUserContext } from "../../contexts/LoginUserContext";
 
 export const LoginPage = () => {
+  const {setLoginUser} = useContext(LoginUserContext)
   const [loginInfo, setLoginInfo] = useState<LoginInfoType>({
     email: "",
     password: "",
   })
+
+  const navigate = useNavigate()
+
   const [errorMessage, setErrorMessage] = useState("")
 
   const changeLoginInfo = (event: ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +26,9 @@ export const LoginPage = () => {
     event.preventDefault()
     setErrorMessage("")
     try {
-      login(loginInfo)
+      const resUser = login(loginInfo)
+      setLoginUser({id: resUser.id, name: resUser.name})
+      navigate("/calendar")
     } catch {
       setErrorMessage("ログインに失敗しました")
     }

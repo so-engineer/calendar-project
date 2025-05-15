@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { ToPage } from './components/pages/ToPage'
 import { LoginPage } from './components/pages/LoginPage'
 import { NotLoginLayout } from './components/templates/NotLoginLayout'
+import { CalenderPage } from './components/pages/CalenderPage'
 
 export const router = createBrowserRouter([
   {
@@ -10,6 +11,7 @@ export const router = createBrowserRouter([
     children: [
       {index: true, element: <ToPage />},
       {path: "/login", element: <LoginPage />},
+      {path: "/calendar", element: <CalenderPage />},
     ]
   }
 ])
