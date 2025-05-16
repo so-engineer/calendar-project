@@ -1,12 +1,19 @@
 import { useContext, useEffect, useState } from 'react'
 import { LoginUserContext } from '../../contexts/LoginUserContext'
-import { eachDayOfInterval, eachWeekOfInterval, endOfMonth, endOfWeek, getDate, getMonth, startOfMonth } from 'date-fns'
+import { eachDayOfInterval, eachWeekOfInterval, endOfMonth, endOfWeek, getDate, getMonth, isSameMonth, isToday, startOfMonth } from 'date-fns'
 import { DAYS_LIST } from '../../constants/calendar'
 
 export const CalenderPage = () => {
   const today = new Date()
   const [dateList, setDateList] = useState<Date[][]>([])
   const {loginUser} = useContext(LoginUserContext)
+
+  const dateColor = (targetDate: Date, currentDate: Date) => {
+    if (isToday(targetDate)) return "bg-lime-800 text-white rounded-full"
+    return isSameMonth(targetDate, currentDate)
+      ? "text-black"
+      : "text-gray-300"
+  }
 
   useEffect(() => {
     const monthOfSundayList = eachWeekOfInterval({
@@ -44,7 +51,10 @@ export const CalenderPage = () => {
             <tr key={`week-${getDate(oneWeek[0])}`} className='mx-10'>
               {oneWeek.map((item) => (
                 <td key={`day-${getDate(item)}`} className='bg-white h-[10vh] border-2 border-solid border-lime-800'>
-                  <span className='inline-block w-[20px] leading-[20px] text-center'>
+                  <span className={`inline-block w-[20px] leading-[20px] text-center ${dateColor(
+                      item,
+                      today
+                    )}`}>
                     {getDate(item)}
                   </span>
                 </td>
