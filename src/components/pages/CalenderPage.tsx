@@ -1,28 +1,11 @@
-import { useEffect, useState } from 'react'
-import { eachDayOfInterval, eachWeekOfInterval, endOfMonth, endOfWeek, getMonth, startOfMonth } from 'date-fns'
+import { getMonth } from 'date-fns'
 import { CalendarHeader } from '../organisms/CalendarHeader'
 import { CalendarBody } from '../organisms/CalendarBody'
+import { useCalendar } from '../../hooks/useCalendar'
 
 export const CalenderPage = () => {
   const today = new Date()
-  const [dateList, setDateList] = useState<Date[][]>([])
-
-
-  useEffect(() => {
-    const monthOfSundayList = eachWeekOfInterval({
-      start: startOfMonth(today),
-      end: endOfMonth(today),
-    })
-    // console.log(monthOfSundayList)
-    const newDateList: Date[][] = monthOfSundayList.map((date) => {
-      return eachDayOfInterval({
-        start: date,
-        end: endOfWeek(date),
-      })
-    })
-    // console.log(newDateList)
-    setDateList(newDateList)
-  }, [])
+  const {dateList} = useCalendar({currentDate: today})
 
   return (
     <>
