@@ -1,6 +1,7 @@
 import { getDate } from 'date-fns'
 import { dateColor } from '../../libs/date'
 import { DateList } from '../../types/calendar'
+import { ScheduleBtn } from '../atoms/ScheduleBtn'
 
 type PropsType = {
   currentDate: Date
@@ -20,6 +21,13 @@ export const CalendarBody = ({currentDate, dateList}: PropsType) => {
                 )}`}>
                 {getDate(item.date)}
               </span>
+              <div className='flex flex-col items-center gap-1 pb-2'>
+                {item.schedules.map((schedule) => (
+                  <ScheduleBtn key={schedule.id}>
+                    {schedule.title}
+                  </ScheduleBtn>
+                ))}
+              </div>
             </td>
           ))}
         </tr>
