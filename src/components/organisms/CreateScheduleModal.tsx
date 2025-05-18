@@ -32,6 +32,9 @@ export const CreateScheduleModal = ({
     date: format(new Date(), "yyyy-MM-dd"),
     description: "",
   })
+
+  const [errorMessage, setErrorMessage] = useState("")
+
   const changeNewSchedule = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -42,6 +45,12 @@ export const CreateScheduleModal = ({
   const handleCreateSchedule = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const { title, date, description } = newSchedule
+    if (title === "") {
+      setErrorMessage("タイトルを入力してください")
+      return
+    } else {
+      setErrorMessage("")
+    }
     const schedule: Schedule = {
       id: 100001,
       title,
@@ -63,6 +72,11 @@ export const CreateScheduleModal = ({
         <h3 className='text-center text-3xl text-lime-800 font-bold pb-5'>
           予定作成
         </h3>
+        {errorMessage !== "" && (
+          <div className="p-5 mb-5 bg-red-500 text-white text-center rounded-lg">
+            {errorMessage}
+          </div>
+        )}
         <form className="flex flex-col gap-8" onSubmit={handleCreateSchedule}>
           <div className="w-[100%] flex items-center">
             <label htmlFor="title-form" className="w-[30%] text-lime-800">タイトル</label>
