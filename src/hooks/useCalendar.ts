@@ -17,12 +17,38 @@ type PropsType = {
 export const useCalendar = ({ currentDate }: PropsType) => {
   const [dateList, setDateList] = useState<DateList>([]);
 
+  const getDateListIndex = (
+    currentDateList: DateList,
+    schedule: Schedule
+  ): number[] => {
+    const firstIndex = currentDateList.findIndex((oneWeek) => {
+      return oneWeek.some((item) => isSameDay(item.date, schedule.date));
+    });
+    if (firstIndex === -1) return [-1, -1];
+    const secondIndex = currentDateList[firstIndex].findIndex((item) => {
+      return isSameDay(item.date, schedule.date);
+    });
+    return [firstIndex, secondIndex];
+  };
+
+  const addSchedule = (schedule: Schedule) => {
+    const newDateList = [...dateList];
+
+    const [firstIndex, secondIndex] = getDateListIndex(newDateList, schedule);
+    if (firstIndex === -1) return;
+
+    newDateList[firstIndex][secondIndex].schedules = [
+      ...newDateList[firstIndex][secondIndex].schedules,
+      schedule,
+    ];
+    setDateList(newDateList);
+  };
+
   useEffect(() => {
     const monthOfSundayList = eachWeekOfInterval({
       start: startOfMonth(currentDate),
       end: endOfMonth(currentDate),
     });
-    // console.log(monthOfSundayList)
     const newDateList: DateList = monthOfSundayList.map((date) => {
       return eachDayOfInterval({
         start: date,
@@ -32,24 +58,20 @@ export const useCalendar = ({ currentDate }: PropsType) => {
 
     const scheduleList = getScheduleList();
     scheduleList.forEach((schedule) => {
-      const firstIndex = newDateList.findIndex((oneWeek) =>
-        oneWeek.some((item) => isSameDay(item.date, schedule.date))
-      );
+      const [firstIndex, secondIndex] = getDateListIndex(newDateList, schedule);
       if (firstIndex === -1) return;
-      const secondIndex = newDateList[firstIndex].findIndex((item) =>
-        isSameDay(item.date, schedule.date)
-      );
 
       newDateList[firstIndex][secondIndex].schedules = [
         ...newDateList[firstIndex][secondIndex].schedules,
         schedule,
       ];
     });
-    // console.log(newDateList)
+
     setDateList(newDateList);
   }, [currentDate]);
 
   return {
     dateList,
+    addSchedule,
   };
 };
