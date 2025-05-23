@@ -3,14 +3,23 @@ import { dateColor } from '../../libs/date'
 import { DateList, Schedule } from '../../types/calendar'
 import { ScheduleBtn } from '../atoms/ScheduleBtn'
 import { ScheduleDetailModal } from './ScheduleDetailModal'
-import { useState } from 'react'
+import { useState, Dispatch, SetStateAction } from 'react'
 
 type PropsType = {
   currentDate: Date
   dateList: DateList
+  // setDateList: Dispatch<SetStateAction<DateList>>
+  scheduleList: Schedule[]
+  setScheduleList: Dispatch<SetStateAction<Schedule[]>>
 }
 
-export const CalendarBody = ({currentDate, dateList}: PropsType) => {
+export const CalendarBody = ({
+  currentDate,
+  dateList,
+  // setDateList,
+  scheduleList,
+  setScheduleList
+}: PropsType) => {
   const [selectedSchedule, setSelectedSchedule] = useState<Schedule | null>(
     null
   )
@@ -41,7 +50,14 @@ export const CalendarBody = ({currentDate, dateList}: PropsType) => {
           </tr>
         ))}
       </tbody>
-      <ScheduleDetailModal selectedSchedule={selectedSchedule} closeModal={closeModal} />
+      <ScheduleDetailModal
+        closeModal={closeModal}
+        selectedSchedule={selectedSchedule}
+        // dateList={dateList}
+        // setDateList={setDateList}
+        scheduleList={scheduleList}
+        setScheduleList={setScheduleList}
+      />
     </>
   )
 }
