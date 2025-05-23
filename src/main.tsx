@@ -6,6 +6,10 @@ import "./styles/destyle.css"
 import { RouterProvider } from 'react-router-dom'
 import { router } from './routes'
 import { LoginUserProvider } from './contexts/LoginUserContext'
+import Modal from 'react-modal';
+
+// アプリケーションのルート要素を設定
+Modal.setAppElement('#root');
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

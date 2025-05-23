@@ -35,7 +35,7 @@ export const useCreateSchedule = ({ closeModal, addSchedule }: PropsType) => {
       setErrorMessage('');
     }
     const schedule: Schedule = {
-      id: 100001,
+      id: Math.floor(Math.random() * 1000000000),
       title,
       date: parse(date, 'yyyy-MM-dd', new Date()),
       description: description,
