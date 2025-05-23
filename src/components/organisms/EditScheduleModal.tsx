@@ -11,8 +11,6 @@ type PropsType = {
   closeModal: () => void
   closeEditModal: () => void
   selectedSchedule: Schedule
-  // dateList: DateList
-  // setDateList: Dispatch<SetStateAction<DateList>>
   scheduleList: Schedule[]
   setScheduleList: Dispatch<SetStateAction<Schedule[]>>
 }
@@ -32,8 +30,6 @@ export const EditScheduleModal = ({
   closeModal,
   closeEditModal,
   selectedSchedule,
-  // dateList,
-  // setDateList,
   scheduleList,
   setScheduleList,
 }: PropsType) => {
@@ -53,34 +49,7 @@ export const EditScheduleModal = ({
     setNewSchedule({ ...newSchedule, [name]: value });
   };
 
-  // const getDateListIndex = (
-  //   dateList: DateList,
-  //   selectedSchedule: Schedule
-  // ): number[] => {
-  //   const firstIndex = dateList.findIndex((oneWeek) => {
-  //     return oneWeek.some((item) => isSameDay(item.date, selectedSchedule.date));
-  //   });
-  //   if (firstIndex === -1) return [-1, -1];
-  //   const secondIndex = dateList[firstIndex].findIndex((item) => {
-  //     return isSameDay(item.date, selectedSchedule.date);
-  //   });
-  //   const thirdIndex = dateList[firstIndex][secondIndex].schedules.findIndex((item) => {
-  //     return item.id === selectedSchedule.id
-  //   });
-
-  //   return [firstIndex, secondIndex, thirdIndex];
-  // };
-
   const addSchedule = (selectedSchedule: Schedule, updatedSchedule: Schedule) => {
-    // const newDateList = [...dateList];
-
-    // const [firstIndex, secondIndex, thirdIndex] = getDateListIndex(newDateList, selectedSchedule);
-    // if (firstIndex === -1) return;
-
-    // // 更新後のスケジュールで上書き
-    // newDateList[firstIndex][secondIndex].schedules[thirdIndex] = updatedSchedule;
-    // setDateList(newDateList);
-
     const newScheduleList = scheduleList.map((schedule) => (
       schedule.id === selectedSchedule.id
       ? {

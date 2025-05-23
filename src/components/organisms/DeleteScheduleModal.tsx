@@ -8,8 +8,6 @@ type PropsType = {
   closeModal: () => void
   closeDeleteModal: () => void
   selectedSchedule: Schedule
-  // dateList: DateList
-  // setDateList: Dispatch<SetStateAction<DateList>>
   scheduleList: Schedule[]
   setScheduleList: Dispatch<SetStateAction<Schedule[]>>
 }
@@ -29,20 +27,11 @@ export const DeleteScheduleModal = ({
   closeModal,
   closeDeleteModal,
   selectedSchedule,
-  // dateList,
-  // setDateList,
   scheduleList,
   setScheduleList,
 }: PropsType) => {
 
   const onClickDelete = (selectedSchedule: Schedule) => {
-    // const newDateList = dateList.map(week => 
-    //   week.map(day => ({
-    //     ...day,
-    //     schedules: day.schedules.filter(schedule => schedule.id !== selectedSchedule.id)
-    //   }))
-    // )
-    // setDateList(newDateList)
     const newScheduleList = scheduleList.filter(schedule => schedule.id !== selectedSchedule.id)
     setScheduleList(newScheduleList)
     closeDeleteModal()

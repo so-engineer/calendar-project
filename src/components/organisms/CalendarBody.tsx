@@ -8,7 +8,6 @@ import { useState, Dispatch, SetStateAction } from 'react'
 type PropsType = {
   currentDate: Date
   dateList: DateList
-  // setDateList: Dispatch<SetStateAction<DateList>>
   scheduleList: Schedule[]
   setScheduleList: Dispatch<SetStateAction<Schedule[]>>
 }
@@ -16,7 +15,6 @@ type PropsType = {
 export const CalendarBody = ({
   currentDate,
   dateList,
-  // setDateList,
   scheduleList,
   setScheduleList
 }: PropsType) => {
@@ -53,8 +51,6 @@ export const CalendarBody = ({
       <ScheduleDetailModal
         closeModal={closeModal}
         selectedSchedule={selectedSchedule}
-        // dateList={dateList}
-        // setDateList={setDateList}
         scheduleList={scheduleList}
         setScheduleList={setScheduleList}
       />

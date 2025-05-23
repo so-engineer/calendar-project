@@ -23,7 +23,6 @@ export const CalenderPage = () => {
         <CalendarBody
           currentDate={currentDate}
           dateList={dateList}
-          // setDateList={setDateList}
           scheduleList={scheduleList}
           setScheduleList={setScheduleList}
         />

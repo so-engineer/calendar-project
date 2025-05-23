@@ -9,8 +9,6 @@ import { DeleteScheduleModal } from "./DeleteScheduleModal";
 type PropsType = {
   closeModal: () => void;
   selectedSchedule: Schedule | null;
-  // dateList: DateList
-  // setDateList: Dispatch<SetStateAction<DateList>>
   scheduleList: Schedule[]
   setScheduleList: Dispatch<SetStateAction<Schedule[]>>
 };
@@ -27,8 +25,6 @@ const customStyles = {
 export const ScheduleDetailModal = ({
   closeModal,
   selectedSchedule,
-  // dateList,
-  // setDateList,
   scheduleList,
   setScheduleList,
 }: PropsType) => {
@@ -71,8 +67,6 @@ export const ScheduleDetailModal = ({
           closeModal={closeModal}
           closeEditModal={closeEditModal}
           selectedSchedule={selectedSchedule}
-          // dateList={dateList}
-          // setDateList={setDateList}
           scheduleList={scheduleList}
           setScheduleList={setScheduleList}
         />
@@ -84,8 +78,6 @@ export const ScheduleDetailModal = ({
           closeModal={closeModal}
           closeDeleteModal={closeDeleteModal}
           selectedSchedule={selectedSchedule}
-          // dateList={dateList}
-          // setDateList={setDateList}
           scheduleList={scheduleList}
           setScheduleList={setScheduleList}
         />

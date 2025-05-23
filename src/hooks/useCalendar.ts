@@ -37,16 +37,6 @@ export const useCalendar = ({
   };
 
   const addSchedule = (schedule: Schedule) => {
-    // const newDateList = [...dateList];
-
-    // const [firstIndex, secondIndex] = getDateListIndex(newDateList, schedule);
-    // if (firstIndex === -1) return;
-
-    // newDateList[firstIndex][secondIndex].schedules = [
-    //   ...newDateList[firstIndex][secondIndex].schedules,
-    //   schedule,
-    // ];
-    // setDateList(newDateList);
     setScheduleList([...scheduleList, schedule]);
   };
 
@@ -62,7 +52,6 @@ export const useCalendar = ({
       }).map((date) => ({ date, schedules: [] as Schedule[] }));
     });
 
-    // const scheduleList = getScheduleList();
     scheduleList.forEach((schedule) => {
       const [firstIndex, secondIndex] = getDateListIndex(newDateList, schedule);
       if (firstIndex === -1) return;
@@ -78,7 +67,6 @@ export const useCalendar = ({
 
   return {
     dateList,
-    // setDateList,
     addSchedule,
   };
 };
