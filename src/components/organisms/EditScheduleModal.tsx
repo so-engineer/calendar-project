@@ -49,15 +49,15 @@ export const EditScheduleModal = ({
     setNewSchedule({ ...newSchedule, [name]: value });
   };
 
-  const addSchedule = (selectedSchedule: Schedule, updatedSchedule: Schedule) => {
+  const addSchedule = (updateSchedule: Schedule) => {
     const newScheduleList = scheduleList.map((schedule) => (
       schedule.id === selectedSchedule.id
       ? {
           ...schedule,
-          id: updatedSchedule.id,
-          title: updatedSchedule.title,
-          description: updatedSchedule.description,
-          date: updatedSchedule.date,
+          id: updateSchedule.id,
+          title: updateSchedule.title,
+          description: updateSchedule.description,
+          date: updateSchedule.date,
         }
       : schedule
     ))
@@ -66,7 +66,7 @@ export const EditScheduleModal = ({
 
   };
 
-  const handleCreateSchedule = (event: FormEvent<HTMLFormElement>) => {
+  const handleUpdateSchedule = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (newSchedule.title === '') {
       setErrorMessage('タイトルを入力してください');
@@ -75,13 +75,13 @@ export const EditScheduleModal = ({
       setErrorMessage('');
     }
 
-    const updatedSchedule = {
+    const updateSchedule = {
       ...selectedSchedule,
       ...newSchedule,
       date: parse(newSchedule.date, 'yyyy-MM-dd', new Date()),
     };
 
-    addSchedule(selectedSchedule, updatedSchedule)
+    addSchedule(updateSchedule)
     closeEditModal()
     closeModal()
   };
@@ -97,7 +97,7 @@ export const EditScheduleModal = ({
             {errorMessage}
           </div>
         )}
-        <form className="flex flex-col gap-8" onSubmit={handleCreateSchedule}>
+        <form className="flex flex-col gap-8" onSubmit={handleUpdateSchedule}>
           <div className="w-[100%] flex items-center">
             <label htmlFor="title-form" className="w-[30%] text-lime-800">タイトル</label>
             <Input

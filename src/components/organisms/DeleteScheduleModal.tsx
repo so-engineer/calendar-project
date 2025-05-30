@@ -48,7 +48,7 @@ export const DeleteScheduleModal = ({
           <PrimaryBtn size="lg" onClick={() => onClickDelete(selectedSchedule)}>
             はい
           </PrimaryBtn>
-          <PrimaryBtn size="lg" onClick={() => closeDeleteModal()}>
+          <PrimaryBtn size="lg" onClick={closeDeleteModal}>
             いいえ
           </PrimaryBtn>
         </div>
