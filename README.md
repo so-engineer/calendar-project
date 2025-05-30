@@ -34,6 +34,12 @@ npm install
 npm run dev
 ```
 
+4. ログイン（テストユーザー）
+```
+email: test@example.com
+password: password
+```
+
 ## プロジェクト構造
 
 ```
