@@ -1,50 +1,82 @@
-# React + TypeScript + Vite
+# Calendar Project 📅
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+このプロジェクトは、ReactとTypeScriptを使用して構築されたモダンなカレンダーアプリケーションです。
 
-Currently, two official plugins are available:
+## 特徴
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Calendar Projectは、シンプルで使いやすいカレンダーインターフェースを提供するWebアプリケーションです。最新のReactの機能とTypeScriptの型安全性を活用し、堅牢で保守性の高いアプリケーションを実現しています。
 
-## Expanding the ESLint configuration
+主な機能：
+- モダンなUI/UXデザイン
+- TypeScriptによる型安全性
+- Tailwind CSSによるレスポンシブデザイン
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 技術スタック
 
-- Configure the top-level `parserOptions` property like this:
+- React
+- TypeScript
+- Tailwind CSS
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## セットアップ
+
+1. リポジトリのクローン
+```bash
+git clone https://github.com/so-engineer/calendar-project.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. 依存関係のインストール
+```bash
+npm install
 ```
+
+3. 開発サーバーの起動
+```bash
+npm run dev
+```
+
+4. ログイン（テストユーザー）
+```
+email: test@example.com
+password: password
+```
+
+## プロジェクト構造
+
+```
+.
+├── src/                  # ソースコードディレクトリ
+│   ├── api/             # APIリクエスト関連
+│   ├── assets/          # 静的アセット
+│   ├── components/      # Reactコンポーネント
+│   ├── constants/       # 定数定義
+│   ├── contexts/        # Reactコンテキスト
+│   ├── hooks/           # カスタムフック
+│   ├── libs/            # ユーティリティ関数
+│   ├── styles/          # スタイル定義
+│   ├── types/           # TypeScript型定義
+│   ├── main.tsx         # エントリーポイント
+│   └── routes.tsx       # ルーティング設定
+├── public/              # 静的ファイル
+├── index.html           # HTMLテンプレート
+├── package.json         # プロジェクト設定
+├── tailwind.config.js   # Tailwind CSS設定
+├── vite.config.ts       # Vite設定
+├── tsconfig.json        # TypeScript設定
+└── eslint.config.js     # ESLint設定
+```
+
+## 開発コマンド
+
+```bash
+# 開発サーバーの起動
+npm run dev
+
+# プロダクションビルド
+npm run build
+
+# リントの実行
+npm run lint
+```
+
+## その他
+セキュリティには十分注意してください。

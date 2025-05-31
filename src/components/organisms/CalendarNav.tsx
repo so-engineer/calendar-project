@@ -14,7 +14,7 @@ export const CalendarNav = ({setCurrentDate, addSchedule}: PropsType) => {
   const [isOpen, setIsOpen] = useState(false)
   const closeModal = () => setIsOpen(false)
 
-  // const changeToday = () => setCurrentDate(new Date())
+  const changeToday = () => setCurrentDate(new Date())
   const changePrevMonth = () => setCurrentDate((prevDate) => addMonths(prevDate, -1))
   const changeNextMonth = () => setCurrentDate((prevDate) => addMonths(prevDate, 1))
 
@@ -25,7 +25,7 @@ export const CalendarNav = ({setCurrentDate, addSchedule}: PropsType) => {
           className="text-lime-800 text-2xl"
           onClick={changePrevMonth} 
         />
-        <PrimaryBtn size="sm" onClick={() => setIsOpen(true)}>
+        <PrimaryBtn size="sm" onClick={changeToday}>
           今日
         </PrimaryBtn>
         <FaArrowAltCircleRight
