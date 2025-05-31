@@ -49,7 +49,7 @@ export const EditScheduleModal = ({
     setNewSchedule({ ...newSchedule, [name]: value });
   };
 
-  const addSchedule = (updateSchedule: Schedule) => {
+  const updateScheduleList = (updateSchedule: Schedule) => {
     const newScheduleList = scheduleList.map((schedule) => (
       schedule.id === selectedSchedule.id
       ? {
@@ -81,7 +81,7 @@ export const EditScheduleModal = ({
       date: parse(newSchedule.date, 'yyyy-MM-dd', new Date()),
     };
 
-    addSchedule(updateSchedule)
+    updateScheduleList(updateSchedule)
     closeEditModal()
     closeModal()
   };
