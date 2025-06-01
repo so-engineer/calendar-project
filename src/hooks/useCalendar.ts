@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import {
   eachDayOfInterval,
   eachWeekOfInterval,
@@ -8,13 +8,18 @@ import {
   startOfMonth,
 } from 'date-fns';
 import { DateList, Schedule } from '../types/calendar';
-import { getScheduleList } from '../api/calendar';
 
 type PropsType = {
   currentDate: Date;
+  scheduleList: Schedule[];
+  setScheduleList: Dispatch<SetStateAction<Schedule[]>>;
 };
 
-export const useCalendar = ({ currentDate }: PropsType) => {
+export const useCalendar = ({
+  currentDate,
+  scheduleList,
+  setScheduleList,
+}: PropsType) => {
   const [dateList, setDateList] = useState<DateList>([]);
 
   const getDateListIndex = (
@@ -32,16 +37,7 @@ export const useCalendar = ({ currentDate }: PropsType) => {
   };
 
   const addSchedule = (schedule: Schedule) => {
-    const newDateList = [...dateList];
-
-    const [firstIndex, secondIndex] = getDateListIndex(newDateList, schedule);
-    if (firstIndex === -1) return;
-
-    newDateList[firstIndex][secondIndex].schedules = [
-      ...newDateList[firstIndex][secondIndex].schedules,
-      schedule,
-    ];
-    setDateList(newDateList);
+    setScheduleList([...scheduleList, schedule]);
   };
 
   useEffect(() => {
@@ -56,7 +52,6 @@ export const useCalendar = ({ currentDate }: PropsType) => {
       }).map((date) => ({ date, schedules: [] as Schedule[] }));
     });
 
-    const scheduleList = getScheduleList();
     scheduleList.forEach((schedule) => {
       const [firstIndex, secondIndex] = getDateListIndex(newDateList, schedule);
       if (firstIndex === -1) return;
@@ -68,7 +63,7 @@ export const useCalendar = ({ currentDate }: PropsType) => {
     });
 
     setDateList(newDateList);
-  }, [currentDate]);
+  }, [currentDate, scheduleList]);
 
   return {
     dateList,
